@@ -1,0 +1,21 @@
+{{> header}}
+
+<main class="container">
+  <section class="blog-section">
+    <h1 class="main-title">Welcome to the Blog</h1>
+
+    {{#if blogPosts.length}}
+      {{#each blogPosts}}
+        <article class="blog-post">
+          <h2><a href="/post/{{this.id}}" class="post-link">{{this.title}}</a></h2>
+          <p class="post-meta">Posted by {{this.user.username}} on {{format_date this.createdAt}}</p>
+          <p class="post-excerpt">{{this.content}}</p>
+        </article>
+      {{/each}}
+    {{else}}
+      <p>No blog posts available yet.</p>
+    {{/if}}
+  </section>
+</main>
+
+{{> footer}}

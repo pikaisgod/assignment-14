@@ -1,0 +1,14 @@
+<header class="site-header">
+  <nav class="navbar">
+    <a href="/" class="nav-link">Home</a>
+    {{#if logged_in}}
+      <a href="/dashboard" class="nav-link">Dashboard</a>
+      <form action="/api/users/logout" method="POST" style="display:inline;">
+        <button type="submit" class="nav-btn">Logout</button>
+      </form>
+    {{else}}
+      <a href="/login" class="nav-link">Login</a>
+      <a href="/signup" class="nav-link">Sign Up</a>
+    {{/if}}
+  </nav>
+</header>

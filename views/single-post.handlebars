@@ -1,0 +1,27 @@
+{{> header}}
+<main class="container">
+  <article>
+    <h2>{{blogPost.title}}</h2>
+    <p>{{blogPost.content}}</p>
+    <p>Posted by {{blogPost.user.username}} on {{blogPost.createdAt}}</p>
+  </article>
+  <section>
+    <h3>Comments</h3>
+    {{#each blogPost.comments}}
+      <p>{{this.user.username}}: {{this.comment_text}} ({{this.createdAt}})</p>
+    {{else}}
+      <p>No comments yet.</p>
+    {{/each}}
+    
+    {{#if logged_in}}
+      <form action="/comment" method="POST">
+        <input type="hidden" name="blog_post_id" value="{{blogPost.id}}">
+        <textarea name="comment_text" placeholder="Write a comment"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    {{else}}
+      <p>Please <a href="/login">log in</a> to comment.</p>
+    {{/if}}
+  </section>
+</main>
+{{> footer}}
